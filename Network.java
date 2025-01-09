@@ -101,7 +101,6 @@ public class Network {
         }
         return name;
     }
-    
 
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
