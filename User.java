@@ -47,19 +47,19 @@
 
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        for (int i = 0; i < this.follows.length; i++) {
-            if(name.equals(this.follows[i])){
-                return true;
-
-            } 
+            for (int i = 0; i < fCount; i++) {
+                if (follows[i] != null && follows[i].equals(name.toLowerCase())) {
+                    return true;
+                }
+            }
+            return false;
         }
-        return false;
-    }
+        
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
         for (int i = 0; i < this.follows.length; i++) {
-            if(name.equals(this.follows[i])){
+            if(name.toLowerCase().equals(this.follows[i].toLowerCase())){
                 return false;
             }
         }
@@ -77,7 +77,7 @@
     public boolean removeFollowee(String name) {
         int index=-1;
         for (int i = 0; i < this.fCount; i++) {
-            if(this.follows[i].equals(name)){
+            if(this.follows[i].toLowerCase().equals(name.toLowerCase())){
                 index=i;
                 break;
             }
@@ -116,7 +116,7 @@
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
         for (int i = 0; i < this.fCount; i++) {
-            if(this.follows[i].equals(other.name)&&other.follows(this.name)){
+            if(this.follows[i].toLowerCase().equals(other.name.toLowerCase())&&other.follows(this.name.toLowerCase())){
                 return true;
             }
             

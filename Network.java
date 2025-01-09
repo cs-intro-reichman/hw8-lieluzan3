@@ -88,19 +88,20 @@ public class Network {
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
     public String mostPopularUser() {
-        int max=followeeCount(this.users[0].getName());
-        String name1=this.users[0].getName();
-        if(this.users[0]==null)
-        return null;
-        for (int i = 1; i < this.getUserCount(); i++) {
-            if(followeeCount(this.users[i].getName())>max){
-                max=followeeCount(this.users[i].getName());
-                name1=this.users[i].getName();
-            }
-            
+        int max=0;
+        String name = null;
+        if(this.users[0] == null){
+            return null;
         }
-        return name1;
+        for(int i=0; i<this.getUserCount();i++){
+            if(this.users[i]!=null&& followeeCount(this.users[i].getName())>max){
+                max = followeeCount(this.users[i].getName());
+                name = this.users[i].getName();
+            }   
+        }
+        return name;
     }
+    
 
     /** Returns the number of times that the given name appears in the follows lists of all
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
