@@ -106,18 +106,18 @@ public class Network {
      *  the users in this network. Note: A name can appear 0 or 1 times in each list. */
     private int followeeCount(String name) {
         
-        int count1=0;
-        if(name==null){
-        return 0;
+        if(name==null ||name.isEmpty() || this.getUser(name)==null){
+            return 0;
         }
-        for (int i = 0; i < getUserCount(); i++) {
-            if(name.toLowerCase().equals(this.users[i].getName().toLowerCase())){
-                count1++;
+        int counter = 0;
+        for(int i=0; i<this.getUserCount(); i++){
+            if(this.users[i]!=null&& this.users[i].follows(name.toLowerCase())&&this.users[i] != this.getUser(name.toLowerCase())){
+                counter++;
             }
-            
         }
-        return count1;
+        return counter;
     }
+
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
